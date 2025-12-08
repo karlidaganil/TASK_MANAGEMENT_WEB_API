@@ -42,4 +42,26 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
         responseModel.Payload = true;
         return responseModel;
     }
+
+    public async Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id)
+    {
+        var responseModel = new ResponseModel<GetTaskDto?>();
+
+        var task = await context.Tasks.FindAsync(id);
+        if (task == null)
+        {
+            responseModel.Success = false;
+            responseModel.Message = "Task not found";
+            return responseModel;
+        }
+
+        responseModel.Payload = new GetTaskDto(
+            task.Id,
+            task.Title,
+            task.Description,
+            task.Status,
+            task.DueDate);
+
+        return responseModel;
+    }
 }

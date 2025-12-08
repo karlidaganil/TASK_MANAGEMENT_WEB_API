@@ -7,4 +7,5 @@ public interface ITaskRepository
 {
     public Task<ResponseModel<List<GetTaskDto>>> GetAllTasks();
     public Task<ResponseModel<bool>> CreateTaskAsync(CreateTaskDto dto);
+    public Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id);
 }

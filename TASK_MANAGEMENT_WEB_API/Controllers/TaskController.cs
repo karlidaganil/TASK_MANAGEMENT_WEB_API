@@ -22,4 +22,10 @@ public class TaskController(ITaskRepository taskRepository) : ControllerBase
     {
         return await taskRepository.CreateTaskAsync(dto);
     }
+
+    [HttpGet("{id}")]
+    public async Task<ResponseModel<GetTaskDto?>> GetById(int id)
+    {
+        return await taskRepository.GetTaskByIdAsync(id);
+    }
 }
