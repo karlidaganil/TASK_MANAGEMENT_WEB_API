@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TASK_MANAGEMENT_WEB_API", "TASK_MANAGEMENT_WEB_API\TASK_MANAGEMENT_WEB_API.csproj", "{1518F9D7-740D-4478-B6B6-3DBD40D7B4ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1518F9D7-740D-4478-B6B6-3DBD40D7B4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1518F9D7-740D-4478-B6B6-3DBD40D7B4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1518F9D7-740D-4478-B6B6-3DBD40D7B4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1518F9D7-740D-4478-B6B6-3DBD40D7B4ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
