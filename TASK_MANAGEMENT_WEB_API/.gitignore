@@ -1,0 +1,29 @@
+# Rider IDE
+.idea/
+*.sln.iml
+*.DotSettings.user
+*.DotSettings
+
+# Build klasörleri
+bin/
+obj/
+out/
+publish/
+
+# VS/Rider geçici dosyalar
+*.user
+*.userosscache
+*.suo
+*.tmp
+*.log
+.vscode/
+
+# Paketler
+*.nupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
