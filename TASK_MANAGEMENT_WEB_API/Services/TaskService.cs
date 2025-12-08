@@ -6,9 +6,9 @@ namespace TASK_MANAGEMENT_WEB_API.Services;
 
 public class TaskService(ITaskRepository taskRepository) : ITaskService
 {
-    public async Task<ResponseModel<List<GetTaskDto>>> GetAllTasks()
+    public async Task<PagedResponseModel<List<GetTaskDto>>> GetAllTasks(GetTasksFilterDto filter)
     {
-        return await taskRepository.GetAllTasks();
+        return await taskRepository.GetAllTasks(filter);
     }
 
     public async Task<ResponseModel<bool>> CreateTaskAsync(CreateTaskDto dto)

@@ -3,6 +3,7 @@ using TASK_MANAGEMENT_WEB_API.Common;
 using TASK_MANAGEMENT_WEB_API.Data;
 using TASK_MANAGEMENT_WEB_API.Dto;
 using TASK_MANAGEMENT_WEB_API.Entity;
+using TASK_MANAGEMENT_WEB_API.Enums;
 using TASK_MANAGEMENT_WEB_API.Repositories;
 using TASK_MANAGEMENT_WEB_API.Services;
 
@@ -10,12 +11,12 @@ namespace TASK_MANAGEMENT_WEB_API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TaskController(ITaskService taskService) : ControllerBase
+public class TaskController(ITaskService taskService,ApplicationDbContext context) : ControllerBase
 {
     [HttpGet("all")]
-    public async Task<ResponseModel<List<GetTaskDto>>> GetAll()
+    public async Task<PagedResponseModel<List<GetTaskDto>>> GetAll([FromQuery] GetTasksFilterDto filter)
     {
-        return await taskService.GetAllTasks();
+        return await taskService.GetAllTasks(filter);
     }
 
     [HttpPost("create")]
@@ -40,5 +41,28 @@ public class TaskController(ITaskService taskService) : ControllerBase
     public async Task<ResponseModel<GetTaskDto>> UpdateTask([FromBody] UpdateTaskDto dto)
     {
         return await taskService.UpdateTaskAsync(dto);
+    }
+
+    [HttpGet("trigger")]
+    public bool AddJobs()
+    {
+        var jobs = new List<Job>();
+
+        for (int i = 1; i <= 99; i++)
+        {
+            jobs.Add(new Job
+            {
+                Title = $"Job {i}",
+                Description = $"Description {i}",
+                Status = i % 2 == 0 ? Status.Todo : Status.InProgress,
+                DueDate = DateTime.UtcNow.AddDays(i)
+            });
+        }
+        
+        context.Tasks.AddRange(jobs);
+        context.SaveChanges();
+        
+
+        return true;
     }
 }

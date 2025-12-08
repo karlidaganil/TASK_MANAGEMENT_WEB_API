@@ -8,10 +8,37 @@ namespace TASK_MANAGEMENT_WEB_API.Repositories;
 
 public class TaskRepository(ApplicationDbContext context) : ITaskRepository
 {
-    public async Task<ResponseModel<List<GetTaskDto>>> GetAllTasks()
+    public async Task<PagedResponseModel<List<GetTaskDto>>> GetAllTasks(GetTasksFilterDto filter)
     {
-        var responseModel = new ResponseModel<List<GetTaskDto>>();
-        var tasks = await context.Tasks.ToListAsync();
+        var responseModel = new PagedResponseModel<List<GetTaskDto>>();
+
+        var query = context.Tasks.AsQueryable();
+        
+        if (filter.Status.HasValue)
+        {
+            query = query.Where(t => t.Status == filter.Status.Value);
+        }
+        
+        if (filter.DueDateFrom.HasValue)
+        {
+            query = query.Where(t => t.DueDate >= filter.DueDateFrom.Value);
+        }
+
+        if (filter.DueDateTo.HasValue)
+        {
+            query = query.Where(t => t.DueDate <= filter.DueDateTo.Value);
+        }
+        
+        var totalCount = await query.CountAsync();
+        
+        var pageNumber = filter.PageNumber > 0 ? filter.PageNumber : 1;
+        var pageSize = filter.PageSize > 0 ? filter.PageSize : 10;
+
+        var tasks = await query
+            .OrderBy(t => t.DueDate) 
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
 
         var payload = tasks.Select(task => new GetTaskDto(
             task.Id,
@@ -21,6 +48,10 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
             task.DueDate)).ToList();
 
         responseModel.Payload = payload;
+        responseModel.PageNumber = pageNumber;
+        responseModel.PageSize = pageSize;
+        responseModel.TotalCount = totalCount;
+
         return responseModel;
     }
 
