@@ -203,3 +203,4 @@
 /Users/anil/RiderProjects/TASK_MANAGEMENT_WEB_API/TASK_MANAGEMENT_WEB_API/bin/Debug/net10.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/anil/RiderProjects/TASK_MANAGEMENT_WEB_API/TASK_MANAGEMENT_WEB_API/bin/Debug/net10.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/anil/RiderProjects/TASK_MANAGEMENT_WEB_API/TASK_MANAGEMENT_WEB_API/bin/Debug/net10.0/runtimes/win/lib/net9.0/System.Windows.Extensions.dll
+/Users/anil/RiderProjects/TASK_MANAGEMENT_WEB_API/TASK_MANAGEMENT_WEB_API/obj/Debug/net10.0/TASK_MANAGEMENT_WEB_API.sourcelink.json

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TASK_MANAGEMENT_WEB_API.Data;
+using TASK_MANAGEMENT_WEB_API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 var app = builder.Build();
 
