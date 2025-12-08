@@ -10,4 +10,5 @@ public interface ITaskService
     Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id);
     Task<ResponseModel<bool>> DeleteTaskAsync(int id);
     Task<ResponseModel<GetTaskDto>> UpdateTaskAsync(UpdateTaskDto dto);
+    Task<ResponseModel<bool>> DeleteAllTasksAsync();
 }

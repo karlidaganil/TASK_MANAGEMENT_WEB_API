@@ -44,4 +44,11 @@ public class TaskController(ITaskService taskService, ApplicationDbContext conte
         var response = await taskService.UpdateTaskAsync(dto);
         return response.Success ? Ok(response) : StatusCode(500, response);
     }
+    
+    [HttpDelete("all")]
+    public async Task<ActionResult<ResponseModel<bool>>> DeleteAllTasks(int id)
+    {
+        var response = await taskService.DeleteAllTasksAsync();
+        return response.Success ? Ok(response) : StatusCode(500, response);
+    }
 }

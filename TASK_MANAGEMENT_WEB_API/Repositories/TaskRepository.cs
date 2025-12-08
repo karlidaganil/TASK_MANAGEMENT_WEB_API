@@ -180,4 +180,22 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
             return responseModel;
         }
     }
+
+    public async Task<ResponseModel<bool>> DeleteAllTasksAsync()
+    {
+        var responseModel = new ResponseModel<bool>();
+        try
+        {
+            context.Tasks.RemoveRange(context.Tasks);
+            await context.SaveChangesAsync();
+            responseModel.Message = "All Tasks deleted";
+            return responseModel;
+        }
+        catch (Exception ex)
+        {
+            responseModel.Success = false;
+            responseModel.Message = ex.Message;
+            return responseModel;
+        }
+    }
 }

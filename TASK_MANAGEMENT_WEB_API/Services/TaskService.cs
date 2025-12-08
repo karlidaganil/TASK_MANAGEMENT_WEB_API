@@ -16,18 +16,23 @@ public class TaskService(ITaskRepository taskRepository) : ITaskService
         return await taskRepository.CreateTaskAsync(dto);
     }
 
-    public Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id)
+    public async Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id)
     {
-        return taskRepository.GetTaskByIdAsync(id);
+        return await taskRepository.GetTaskByIdAsync(id);
     }
 
-    public Task<ResponseModel<bool>> DeleteTaskAsync(int id)
+    public async Task<ResponseModel<bool>> DeleteTaskAsync(int id)
     {
-        return taskRepository.DeleteTaskAsync(id);
+        return await taskRepository.DeleteTaskAsync(id);
     }
 
-    public Task<ResponseModel<GetTaskDto>> UpdateTaskAsync(UpdateTaskDto dto)
+    public async Task<ResponseModel<GetTaskDto>> UpdateTaskAsync(UpdateTaskDto dto)
     {
-        return taskRepository.UpdateTaskAsync(dto);
+        return await taskRepository.UpdateTaskAsync(dto);
+    }
+
+    public async Task<ResponseModel<bool>> DeleteAllTasksAsync()
+    {
+        return await taskRepository.DeleteAllTasksAsync();
     }
 }
