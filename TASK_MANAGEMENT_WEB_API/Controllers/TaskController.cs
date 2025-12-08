@@ -42,27 +42,4 @@ public class TaskController(ITaskService taskService,ApplicationDbContext contex
     {
         return await taskService.UpdateTaskAsync(dto);
     }
-
-    [HttpGet("trigger")]
-    public bool AddJobs()
-    {
-        var jobs = new List<Job>();
-
-        for (int i = 1; i <= 99; i++)
-        {
-            jobs.Add(new Job
-            {
-                Title = $"Job {i}",
-                Description = $"Description {i}",
-                Status = i % 2 == 0 ? Status.Todo : Status.InProgress,
-                DueDate = DateTime.UtcNow.AddDays(i)
-            });
-        }
-        
-        context.Tasks.AddRange(jobs);
-        context.SaveChanges();
-        
-
-        return true;
-    }
 }
