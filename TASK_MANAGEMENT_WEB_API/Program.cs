@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwagger();
-    app.UseSwaggerUI(); // Swagger UI: https://localhost:<port>/swagger
+    app.UseSwaggerUI();
 }
 
 app.MapControllers();
