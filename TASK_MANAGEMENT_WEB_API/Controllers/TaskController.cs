@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using TASK_MANAGEMENT_WEB_API.Common;
 using TASK_MANAGEMENT_WEB_API.Data;
 using TASK_MANAGEMENT_WEB_API.Dto;
+using TASK_MANAGEMENT_WEB_API.Entity;
+using TASK_MANAGEMENT_WEB_API.Enums;
 using TASK_MANAGEMENT_WEB_API.Services;
 
 namespace TASK_MANAGEMENT_WEB_API.Controllers;
