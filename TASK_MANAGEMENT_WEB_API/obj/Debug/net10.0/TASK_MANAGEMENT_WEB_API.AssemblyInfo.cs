@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TASK_MANAGEMENT_WEB_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cdb92989e5b819c42ff1c4aec1a88a7de4633c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36eb2cace764f612e627a9700c0a052e7dedb3ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("TASK_MANAGEMENT_WEB_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TASK_MANAGEMENT_WEB_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

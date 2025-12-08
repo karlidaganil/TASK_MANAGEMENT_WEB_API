@@ -28,4 +28,10 @@ public class TaskController(ITaskRepository taskRepository) : ControllerBase
     {
         return await taskRepository.GetTaskByIdAsync(id);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ResponseModel<bool>> DeleteTaskById(int id)
+    {
+        return await taskRepository.DeleteAsync(id);
+    }
 }

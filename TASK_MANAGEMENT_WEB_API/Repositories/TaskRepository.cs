@@ -64,4 +64,22 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
 
         return responseModel;
     }
+
+    public async Task<ResponseModel<bool>> DeleteAsync(int id)
+    {
+        var responseModel = new ResponseModel<bool>();
+        
+        var taskToDelete = await context.Tasks.FindAsync(id);
+        if (taskToDelete == null)
+        {
+            responseModel.Success = false;
+            responseModel.Message= "Task not found";
+            return responseModel;
+        }
+
+        context.Tasks.Remove(taskToDelete);
+        await context.SaveChangesAsync();
+
+        return responseModel;
+    }
 }

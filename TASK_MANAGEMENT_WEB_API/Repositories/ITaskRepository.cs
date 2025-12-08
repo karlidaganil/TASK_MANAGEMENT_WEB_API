@@ -5,7 +5,8 @@ namespace TASK_MANAGEMENT_WEB_API.Repositories;
 
 public interface ITaskRepository
 {
-    public Task<ResponseModel<List<GetTaskDto>>> GetAllTasks();
-    public Task<ResponseModel<bool>> CreateTaskAsync(CreateTaskDto dto);
-    public Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id);
+    Task<ResponseModel<List<GetTaskDto>>> GetAllTasks();
+    Task<ResponseModel<bool>> CreateTaskAsync(CreateTaskDto dto);
+    Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id);
+    Task<ResponseModel<bool>> DeleteAsync(int id);
 }
