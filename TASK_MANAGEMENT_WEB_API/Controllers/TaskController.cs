@@ -32,6 +32,12 @@ public class TaskController(ITaskRepository taskRepository) : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ResponseModel<bool>> DeleteTaskById(int id)
     {
-        return await taskRepository.DeleteAsync(id);
+        return await taskRepository.DeleteTaskAsync(id);
+    }
+
+    [HttpPut("update")]
+    public async Task<ResponseModel<GetTaskDto>> UpdateTask([FromBody] UpdateTaskDto dto)
+    {
+        return await taskRepository.UpdateTaskAsync(dto);
     }
 }

@@ -65,20 +65,47 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
         return responseModel;
     }
 
-    public async Task<ResponseModel<bool>> DeleteAsync(int id)
+    public async Task<ResponseModel<bool>> DeleteTaskAsync(int id)
     {
         var responseModel = new ResponseModel<bool>();
-        
+
         var taskToDelete = await context.Tasks.FindAsync(id);
         if (taskToDelete == null)
         {
             responseModel.Success = false;
-            responseModel.Message= "Task not found";
+            responseModel.Message = "Task not found";
             return responseModel;
         }
 
         context.Tasks.Remove(taskToDelete);
         await context.SaveChangesAsync();
+
+        return responseModel;
+    }
+
+    public async Task<ResponseModel<GetTaskDto>> UpdateTaskAsync(UpdateTaskDto dto)
+    {
+        var responseModel = new ResponseModel<GetTaskDto>();
+
+        var taskToUpdate = await context.Tasks.FindAsync(dto.Id);
+        if (taskToUpdate == null)
+        {
+            responseModel.Success = false;
+            responseModel.Message = "Task not found";
+            return responseModel;
+        }
+
+        taskToUpdate.Title = dto.Title;
+        taskToUpdate.Description = dto.Description;
+        taskToUpdate.Status = dto.Status;
+        taskToUpdate.DueDate = dto.DueDate;
+
+        await context.SaveChangesAsync();
+
+        var taskToReturn = new GetTaskDto(taskToUpdate.Id, taskToUpdate.Title, taskToUpdate.Description,
+            taskToUpdate.Status, taskToUpdate.DueDate);
+
+        responseModel.Payload = taskToReturn;
 
         return responseModel;
     }

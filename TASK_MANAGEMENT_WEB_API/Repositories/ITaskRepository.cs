@@ -8,5 +8,6 @@ public interface ITaskRepository
     Task<ResponseModel<List<GetTaskDto>>> GetAllTasks();
     Task<ResponseModel<bool>> CreateTaskAsync(CreateTaskDto dto);
     Task<ResponseModel<GetTaskDto?>> GetTaskByIdAsync(int id);
-    Task<ResponseModel<bool>> DeleteAsync(int id);
+    Task<ResponseModel<bool>> DeleteTaskAsync(int id);
+    Task<ResponseModel<GetTaskDto>> UpdateTaskAsync(UpdateTaskDto dto);
 }
