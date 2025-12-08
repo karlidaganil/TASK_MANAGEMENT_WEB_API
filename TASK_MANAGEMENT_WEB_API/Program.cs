@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TASK_MANAGEMENT_WEB_API.Data;
 using TASK_MANAGEMENT_WEB_API.Repositories;
+using TASK_MANAGEMENT_WEB_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 );
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 var app = builder.Build();
 
