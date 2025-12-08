@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TASK_MANAGEMENT_WEB_API.Common;
 using TASK_MANAGEMENT_WEB_API.Data;
 using TASK_MANAGEMENT_WEB_API.Dto;
+using TASK_MANAGEMENT_WEB_API.Entity;
 
 namespace TASK_MANAGEMENT_WEB_API.Repositories;
 
@@ -20,6 +21,25 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
             task.DueDate)).ToList();
 
         responseModel.Payload = payload;
+        return responseModel;
+    }
+
+    public async Task<ResponseModel<bool>> CreateTaskAsync(CreateTaskDto dto)
+    {
+        var responseModel = new ResponseModel<bool>();
+
+        var taskToCreate = new Job
+        {
+            Title = dto.title,
+            Description = dto.description,
+            Status = dto.status,
+            DueDate = dto.dueDate
+        };
+
+        await context.Tasks.AddAsync(taskToCreate);
+        await context.SaveChangesAsync();
+
+        responseModel.Payload = true;
         return responseModel;
     }
 }

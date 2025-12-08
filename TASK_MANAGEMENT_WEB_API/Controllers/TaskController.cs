@@ -17,11 +17,9 @@ public class TaskController(ITaskRepository taskRepository) : ControllerBase
         return await taskRepository.GetAllTasks();
     }
 
-    // [HttpPost("create")]
-    // public async Task<bool> CreateJob([FromBody] Job item)
-    // {
-    //     await context.AddAsync(item);
-    //     await context.SaveChangesAsync();
-    //     return true;
-    // }
+    [HttpPost("create")]
+    public async Task<ResponseModel<bool>> Create([FromBody] CreateTaskDto dto)
+    {
+        return await taskRepository.CreateTaskAsync(dto);
+    }
 }
