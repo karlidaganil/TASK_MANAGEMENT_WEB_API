@@ -10,7 +10,7 @@ namespace TASK_MANAGEMENT_WEB_API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TaskController(ITaskService taskService, ApplicationDbContext context) : ControllerBase
+public class TaskController(ITaskService taskService) : ControllerBase
 {
     [HttpGet("all")]
     public async Task<ActionResult<PagedResponseModel<List<GetTaskDto>>>> GetAll([FromQuery] GetTasksFilterDto filter)
@@ -46,7 +46,7 @@ public class TaskController(ITaskService taskService, ApplicationDbContext conte
         var response = await taskService.UpdateTaskAsync(dto);
         return response.Success ? Ok(response) : StatusCode(500, response);
     }
-    
+
     [HttpDelete("all")]
     public async Task<ActionResult<ResponseModel<bool>>> DeleteAllTasks(int id)
     {
