@@ -1,5 +1,12 @@
-"dotnet run" komutu ile web servisi ayağa kaldırılır.
+Running the Web Service
 
-swagger dokumantasyon link : http://localhost:5222/swagger/index.html
+To start the web service, use the following command:
 
-"dotnet run" komutundan sonra web ui projesine geçilebilir.
+dotnet run
+
+
+Once the application is running, you can access the Swagger documentation at:
+
+http://localhost:5222/swagger/index.html
+
+After running dotnet run, you may switch to the Web UI project.
